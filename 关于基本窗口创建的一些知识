@@ -1,0 +1,56 @@
+package TIM;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+
+import javax.swing.*;
+public class TIMme
+{
+	public static void main(String [] args) 
+	{
+		Windowus win=new Windowus("TIM");			//定义窗口对象win  用来实现左上角窗口文字替换替换后名字为“TIM”
+	}
+}
+ class Windowus extends JFrame 					//使自己定义的类继承于JFrame；
+{
+	JMenuBar menbar;						//最外层的菜单栏(最外层的框  调入进去时使用)
+	JMenu menu1,menu2,menu3,menu4 ;				//第一层菜单栏
+	JMenuItem item1,item2,item3,item4,item5;   			//第一层菜单栏的内置菜单栏
+Windowus(String win)
+  {
+	setTitle(win);						//把设置的新的名称替换掉原有的名称的实现
+	setSize(400,400);						//设置窗口大小；
+	setLocation(300,300);					//设置窗口位置；
+	setVisible(true);						//设置JFrame可显示。 
+	menbar=new JMenuBar();					//把窗口导入
+	menu1=new JMenu("文件(f)");					//窗口菜单栏第一行设置
+	menu1.setMnemonic('F');					//设置快捷键F访问
+	menu2=new JMenu("查询(O)");					
+	menu2.setMnemonic('O');
+	menu3=new JMenu("更改(V)");
+	menu3.setMnemonic('V');
+	menu4=new JMenu("打开(X)");
+	menu4.setMnemonic('X');					
+	item2=new JMenuItem("保存");				//实现
+	item2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,InputEvent.CTRL_DOWN_MASK));	//快捷键绑定CTRL+S;
+	item3=new JMenuItem("复制");
+	item3.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_K,InputEvent.CTRL_DOWN_MASK));
+	item4=new JMenuItem("刷新");
+	item4.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z,InputEvent.CTRL_DOWN_MASK));
+	item5=new JMenuItem("停止");
+	item5.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T,InputEvent.CTRL_DOWN_MASK));
+	menu1.add(menu4);
+	menu4.add(new JMenuItem(":"));				//加入新的菜单栏内内容
+	menu1.addSeparator();					//让两个选项中间加入一个分割线
+	menu4.add(new JMenuItem(";"));
+	menu1.add(item2);						//把上面写的实现按顺序导入
+	menu2.add(item3);
+	menu3.add(item4);
+	menu3.add(item5);
+	menbar.add(menu1);
+	menbar.add(menu2);
+	menbar.add(menu3);
+	setJMenuBar(menbar);
+	validate();							//确保组件具有有效的布局  相当于刷新；
+	setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);		//用户单击窗口的关闭按钮时程序执行的操作
+  }
+}
